@@ -1,0 +1,83 @@
+
+<header>
+      <div>
+        <!-- Navbar -->
+  <nav class="navbar navbar-default navbar-dark bootsnav navbar-expand-lg  bg-navbar-sticky navbar-scrollspy fixed-top" data-minus-value-desktop="70"
+     data-minus-value-mobile="55" data-speed="100">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <h2 class="text-white"><a class="text-white" href="{% url 'index' %}">Recipes</a></h2>
+<!--     Toggle button -->
+    <button
+      data-mdb-collapse-init
+      class="navbar-toggler"
+      type="button"
+      data-mdb-target="#navbarCenteredExample"
+      aria-controls="navbarCenteredExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div
+      class="collapse navbar-collapse justify-content-center"
+      id="navbarCenteredExample"
+    >
+      <!-- Left links -->
+      <ul class="navbar-nav mb-1 mb-lg-0 ">
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="#">Bosh sahifa   </a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="#retsept">Retseptlar</a>
+        </li>
+
+<!--          &lt;!&ndash; Dropdown menu &ndash;&gt;-->
+<!--          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--            {% for i in categories %}-->
+<!--            <li>-->
+<!--              <a class="dropdown-item text-dark"  href="#">{{ i.name }}</a>-->
+<!--            </li>-->
+<!--            {% endfor %}-->
+<!--          </ul>-->
+<!--        </li>-->
+        <li class="nav-item ">
+          <a class="nav-link text-white" href="#footer">Biz haqimizda</a>
+        </li>
+
+      </ul>
+      <!-- Left links -->
+
+    </div>
+    <!-- Collapsible wrapper -->
+      <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="{% url 'create' %}" role="button">Retsept qo'shish</a>
+  </div>
+  <!-- Container wrapper -->
+
+  </nav>
+  <!-- Navbar -->
+    </div>
+
+
+  <!-- Background image -->
+  <div
+    class="p-5 text-center bg-image"
+    style="
+      background-image: url('https://www.hairybikers.com/uploads/images/_recipeImage/chicken_yassa.jpg');
+      height: 600px;
+    "
+  >
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0);">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-dark">
+<!--          <img src="file:///C:/Users/user/Downloads/rec_logo-removebg-preview.png">-->
+          <h1 class="mb-3 display-1 " style="color: #C5CAE9;"><a href="{% url 'index' %}" class="text-secondary">Secret cooking blog</a></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Background image -->
+  <!-- Background image -->
+</header>

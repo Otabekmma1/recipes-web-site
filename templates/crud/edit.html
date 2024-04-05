@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+    />
+
+    <title>CRUD MINI PROJECT UPDATE</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-md text-center">
+        <a class="navbar-brand" href="{% url 'index' %}">Bosh sahifaga qaytish</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="text-white bg-dark text-center p-3">
+                Retsept tahrirlash
+            </h2>
+            <br>
+            <form action="{% url 'update' recip.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-group mt-1">
+                    <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Retsept nomini kiriting"
+                            name="name"
+                            value="{{recip.name}}"
+                            required
+                    />
+                </div>
+                <div class="form-group mt-1">
+                    <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Retseptni kiriting"
+                            name="content"
+                            value="{{recip.content|truncatewords:10}}"
+                            required
+                    />
+                </div>
+                <div class="form-group mt-1">
+                    <select id="category" class="form-control" name="category" required>
+                        <option selected>{{ recip.category }}</option>
+                        {% for i in categories %}
+                        <option value="{{ i.name }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group mt-1">
+                    <label for="formFileMultiple" class="form-label" >{{recipt.image.url}}</label>
+                    <input class="form-control" type="file" id="formFileMultiple" name="photo" multiple />
+                </div>
+                <br>
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"
+></script>
+</body>
+</html>

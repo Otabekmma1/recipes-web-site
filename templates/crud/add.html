@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+    />
+
+    <title>Add Retsept</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-md text-center">
+        <a class="navbar-brand" href="{% url 'index' %}">Bosh sahifaga qaytish</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="text-white bg-dark text-center p-3">
+                Retsept qo'shish
+            </h2>
+            <br>
+            <form action="{% url 'create' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group mt-1">
+                    <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Retsept nomini kiriting"
+                            name="name"
+                            required
+                    />
+                </div>
+                <div class="form-group mt-1">
+                    <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Retseptni kiriting"
+                            name="content"
+                            required
+                    />
+                </div>
+                <div class="form-group mt-1">
+                    <select id="category" class="form-control" name="category" required>
+                        <option selected>Kategoriyani tanlang</option>
+                        {% for i in categories %}
+                        <option value="{{ i.name }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group mt-1">
+                    <label for="formFileMultiple" class="form-label" >Rasmni kiriting</label>
+                    <input class="form-control" type="file" id="formFileMultiple" name="photo" multiple />
+                </div>
+                <br>
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+
+            <h2 class="text-center text-white bg-dark p-3">Retseptlar</h2>
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nomi</th>
+                    <th scope="col">Retsept</th>
+                    <th scope="col">Kategoriya</th>
+                    <th scope="col">Rasm</th>
+                    <th scope="col">Tahrirlash</th>
+                    <th scope="col">O'chirish</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for d in recipes %}
+                <tr>
+                    <th scope="row">{{d.id}}</th>
+                    <td>{{d.name}}</td>
+                    <td>{{d.content|truncatewords:10}}</td>
+                    <td>{{d.category}}</td>
+                    <td>{{d.photo}}</td>
+                    <td><a type="button" href="/update/{{d.id}}" class="btn btn-outline-primary">Tahrirlash</a></td>
+                    <td><a type="button" href="/delete/{{d.id}}" class="btn btn-outline-danger">O'chirish</a></td>
+
+                </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"
+></script>
+</body>
+</html>
