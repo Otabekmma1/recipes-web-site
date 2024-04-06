@@ -2,11 +2,13 @@
 <header>
       <div>
         <!-- Navbar -->
-  <nav class="navbar navbar-default navbar-dark bootsnav navbar-expand-lg  bg-navbar-sticky navbar-scrollspy fixed-top" data-minus-value-desktop="70"
+  <nav class="navbar navbar-default navbar-light navbar-expand-lg  bg-navbar-sticky navbar-scrollspy fixed-top" data-minus-value-desktop="70"
      data-minus-value-mobile="55" data-speed="100">
   <!-- Container wrapper -->
   <div class="container-fluid">
-    <h2 class="text-white"><a class="text-white" href="{% url 'index' %}">Recipes</a></h2>
+    <img src="media/logo/recipe.png" alt="image"
+         height="70"
+          loading="lazy">
 <!--     Toggle button -->
     <button
       data-mdb-collapse-init
@@ -22,28 +24,18 @@
 
     <!-- Collapsible wrapper -->
     <div
-      class="collapse navbar-collapse justify-content-center"
+      class="collapse navbar-collapse  menu-ui-design justify-content-center"
       id="navbarCenteredExample"
     >
       <!-- Left links -->
-      <ul class="navbar-nav mb-1 mb-lg-0 ">
-        <li class="nav-item">
+      <ul class="nav navbar-nav navbar-right mb-1 mb-lg-0 " style="margin-left: 130px;">
+        <li class="nav-item" style="margin-right: 50px;">
           <a class="nav-link text-white" aria-current="page" href="#">Bosh sahifa   </a>
         </li>
-          <li class="nav-item">
+          <li class="nav-item" style="margin-right: 50px;">
           <a class="nav-link text-white" aria-current="page" href="#retsept">Retseptlar</a>
         </li>
-
-<!--          &lt;!&ndash; Dropdown menu &ndash;&gt;-->
-<!--          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-<!--            {% for i in categories %}-->
-<!--            <li>-->
-<!--              <a class="dropdown-item text-dark"  href="#">{{ i.name }}</a>-->
-<!--            </li>-->
-<!--            {% endfor %}-->
-<!--          </ul>-->
-<!--        </li>-->
-        <li class="nav-item ">
+        <li class="nav-item " style="margin-right: 50px;">
           <a class="nav-link text-white" href="#footer">Biz haqimizda</a>
         </li>
 
@@ -51,8 +43,14 @@
       <!-- Left links -->
 
     </div>
+    {% if request.user.is_authenticated %}
+    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" style="margin-right: 5px;" href="{% url 'create' %}" role="button">Retsept qo'shish</a>
+    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="{% url 'logout' %}" role="button">Chiqish</a>
+    {% else %}
     <!-- Collapsible wrapper -->
-      <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="{% url 'create' %}" role="button">Retsept qo'shish</a>
+    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" style="margin-right: 5px;" href="{% url 'login' %}" role="button">Kirish</a>
+      <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="{% url 'register' %}" role="button">Ro'yxatdan o'tish</a>
+    {% endif %}
   </div>
   <!-- Container wrapper -->
 
@@ -69,7 +67,7 @@
       height: 600px;
     "
   >
-    <div class="mask" style="background-color: rgba(0, 0, 0, 0);">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
       <div class="d-flex justify-content-center align-items-center h-100">
         <div class="text-dark">
 <!--          <img src="file:///C:/Users/user/Downloads/rec_logo-removebg-preview.png">-->

@@ -1,30 +1,18 @@
 {% extends 'base.html' %}
 {% block main  %}
-<!--<div class="row row-cols-1 row-cols-md-3 g-4 text-center">-->
-<!--            <div class="col">-->
-<!--                <div class="card h-100">-->
-<!--                    {% if recipe.photo %}-->
-<!--                    <img src="{{ recipe.photo.url }}" class="card-img-top"-->
-<!--                         alt="Skyscrapers"/>-->
-<!--                    {% else %}-->
-<!--                    <img src="https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg" class="card-img-top"-->
-<!--                         alt="Skyscrapers"/>-->
-<!--                    {% endif %}-->
-<!--                    <div class="card-body">-->
-<!--                        <h5 class="card-title"><a href="#">{{ recipe.name }}</a></h5>-->
-<!--                        <p class="card-text">-->
-<!--                            {{ recipe.content }}-->
-<!--                        </p>-->
-<!--                    </div>-->
-<!--                    <div class="card-footer">-->
-<!--                        <small class="text-muted">{{recipe.updated}}</small>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
 
 <div class="card mb-3 mt-5">
-    <h5 class="card-title text-center mb-5">{{recipe.name}}</h5>
+  <div class="card-title text-center mb-5">
+    <div>
+    <h5>{{recipe.name}}</h5>
+    </div>
+    <div  class="text-primary" style="margin-left: 1150px;
+    margin-top: -30px;
+">
+      {{recipe.views}}
+      <i class="far fa-eye"></i>
+    </div>
+  </div>
   <img src="{{recipe.photo.url}}" class="card-img-top" style="width: 50%; display: block; margin-left: auto; margin-right: auto;" alt="image"/>
   <div class="card-body" style="margin-left: 170px; margin-right: 170px;">
 

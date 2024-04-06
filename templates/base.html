@@ -22,33 +22,43 @@
             rel="stylesheet"
     />
 
+
     <title>
         {% block title %}
-        Food
+        Recipes
         {% endblock title %}
     </title>
+    <style>
+        nav.sticky{
+    padding: 5px 100px;
+    background: #fff;
+}
+    </style>
 </head>
 <body>
 
 
-    {% include 'components/_header.html' %}
+{% include 'components/_header.html' %}
 <div class="container">
 
     <main>
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
         {% block main %}
         {% endblock main %}
     </main>
 </div>
-    {% include 'components/_footer.html' %}
-
-
-
+{% include 'components/_footer.html' %}
 
 
 <!-- MDB -->
 <script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
 ></script>
 
 </body>
