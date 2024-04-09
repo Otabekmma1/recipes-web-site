@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Category, Recipes
+from .models import Category, Recipes, UserProfile
 
-# Register your models here.
 
 
 class RecipesAdmin(admin.ModelAdmin):
@@ -23,3 +22,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Recipes, RecipesAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(UserProfile)

@@ -1,4 +1,4 @@
-
+{% load static %}
 <header>
       <div>
         <!-- Navbar -->
@@ -6,7 +6,7 @@
      data-minus-value-mobile="55" data-speed="100">
   <!-- Container wrapper -->
   <div class="container-fluid">
-    <img src="media/logo/recipe.png" alt="image"
+    <img src="{% static 'img/logo/recipe.png' %}" alt="image"
          height="70"
           loading="lazy">
 <!--     Toggle button -->
@@ -44,8 +44,38 @@
 
     </div>
     {% if request.user.is_authenticated %}
-    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" style="margin-right: 5px;" href="{% url 'create' %}" role="button">Retsept qo'shish</a>
-    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="{% url 'logout' %}" role="button">Chiqish</a>
+        <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" style="margin-right: 10px;" href="{% url 'create' %}" role="button">Retsept qo'shish</a>
+
+       <!-- Avatar -->
+      <div class="dropdown">
+        <a
+          data-mdb-dropdown-init
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuAvatar"
+          role="button"
+          aria-expanded="false"
+        >
+          <img
+            src="{% static 'img/ava3.jpg' %}"
+            class="rounded-circle"
+            height="40"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"
+          />
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="navbarDropdownMenuAvatar"
+        >
+          <li>
+            <a class="dropdown-item" href="{% url 'profile' %}">Mening profilim</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'logout' %}">Chiqish</a>
+          </li>
+        </ul>
+      </div>
     {% else %}
     <!-- Collapsible wrapper -->
     <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" style="margin-right: 5px;" href="{% url 'login' %}" role="button">Kirish</a>

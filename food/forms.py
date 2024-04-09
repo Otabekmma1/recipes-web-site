@@ -1,6 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django.contrib.auth.models import User
+from .models import UserProfile
+from django.forms import ModelForm
+
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
@@ -19,17 +22,18 @@ class RegistrationForm(UserCreationForm):
         'class': 'form-control'
     }))
 
-
-
-
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('first_name', 'last_name', 'username', 'email')
 
 
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = "__all__"
 
-    # def clean_password2(self):
-    #     cd = self.cleaned_data
-    #     if cd['password'] != cd['password2']:
-    #         raise forms.ValidationError('Password dont match')
-    #     return cd['password2']
+    # def __init__(self, *args, **kwargs):
+    #     super(ModelForm, self).__init__(*args, **kwargs)
+    #
+    #     for key, field in self.fields.items():
+    #         field.widget.attrs.update({"class": "input input--text"})

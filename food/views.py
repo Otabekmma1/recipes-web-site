@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Category, Recipes
-from .forms import LoginForm, RegistrationForm
+from .models import Category, Recipes, UserProfile
+from .forms import LoginForm, RegistrationForm, UpdateProfileForm
 from django.contrib.auth import login, logout
-
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.models import LogEntry
+from django.contrib.auth.models import User
 
 
 #Barcha retseptlar
@@ -110,7 +113,7 @@ def user_login(request):
     ctx = {
         'title': 'Kirish'
     }
-    return render(request, 'reg_and_login/login_form.html', context=ctx)
+    return render(request, 'user/login_form.html', context=ctx)
 
 
 def user_logout(request):
@@ -133,5 +136,68 @@ def user_register(request):
         'form': form,
         'title': "Ro'yxatdan o'tish"
     }
-    return render(request, 'reg_and_login/reg_form.html', ctx)
+    return render(request, 'user/reg_form.html', ctx)
+
+
+@login_required(login_url='login')
+def user_profile(request):
+    username = request.user.username
+    user = User.objects.get(username=username)
+    ctx = {
+        'user': user,
+    }
+
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+        ctx['user_profile'] = user_profile
+    except:
+        pass
+
+    return render(request, 'user/profile.html', context=ctx)
+
+
+@login_required(login_url='login')
+def update_profile(request):
+    # id = request.user.id
+    # current_user = UserProfile.objects.get(id=id)
+    # form = UpdateProfileForm(instance=current_user)
+    # if request.method == 'POST':
+    #     form = UpdateProfileForm(request.POST or None, instance=current_user)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('profile')
+    # ctx = {
+    #     'form': form,
+    # }
+    # return render(request, 'user/update_profile.html', context=ctx)
+
+    req = request.POST
+    id = request.user.id
+    if request.method == "POST":
+        status = req.get('status')
+        addres = req.get('addres')
+        phone = req.get('phone')
+        chrome = req.get('chrome')
+        instagram = req.get('instagram')
+        facebook = req.get('facebook')
+        photo = req.get('photo')
+
+        edit = UserProfile.objects.get(id=id)
+        edit.status = status
+        edit.addres = addres
+        edit.phone = phone
+        edit.chrome = chrome
+        edit.instagram = instagram
+        edit.facebook = facebook
+        edit.photo = photo
+        edit.save()
+        messages.warning(request, "Sahifa muvaffaqiyatli o'zgartirildi")
+        return redirect("/profile")
+
+    id = request.user.id
+    current_user = UserProfile.objects.get(id=id)
+    context = {
+        'current_user': current_user,
+    }
+    return render(request, "user/update_profile.html", context)
 

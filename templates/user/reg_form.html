@@ -56,6 +56,32 @@
                     <h1 class="mb-4 text-white">Recipes</h1>
                     <form class="row g-3 needs-validation" action="{% url 'register' %}" method="post" novalidate>
                         {% csrf_token %}
+                            <div class="position-relative">
+                            <div class="input-group form-outline" data-mdb-input-init>
+                                <input
+                                        type="text"
+                                        name="first_name"
+                                        class="form-control text-white"
+                                        id="validationTooltipFirstname"
+                                        aria-describedby="validationTooltipUsernamePrepend"
+                                        required
+                                />
+                                <label for="validationTooltipFirstname" class="form-label text-white">Ismi</label>
+                            </div>
+                        </div>
+                            <div class="position-relative">
+                            <div class="input-group form-outline" data-mdb-input-init>
+                                <input
+                                        type="text"
+                                        name="last_name"
+                                        class="form-control text-white"
+                                        id="validationTooltipLastname"
+                                        aria-describedby="validationTooltipUsernamePrepend"
+                                        required
+                                />
+                                <label for="validationTooltipLastname" class="form-label text-white">Familiya</label>
+                            </div>
+                        </div>
                         <div class="position-relative">
                             <div class="input-group form-outline" data-mdb-input-init>
                                 <span class="input-group-text text-white" id="validationTooltipUsernamePrepend">@</span>
