@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -87,14 +85,34 @@
 <div class="container bootstrap snippets bootdeys">
     <div class="row">
         <div class="col-xs-12 col-sm-9">
-            <form class="form-horizontal"  style="margin-left: 300px;" method="post" action="{% url 'update_profile' %}">
+            <form class="form-horizontal" style="margin-left: 300px;" method="post" action="{% url 'update_profile' %}">
                 {% csrf_token %}
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
+<!--                        {% if current_user.photo %}-->
+<!--                        <img src="{{current_user.photo.url }}" class="img-circle profile-avatar"-->
+<!--                             alt="img">-->
+<!--                        <div class="form-group">-->
+<!--                            <label class="col-sm-2 control-label" for="profile_picture"></label>-->
+<!--                            <div class="col-sm-10">-->
+<!--                                <input type="file" type="file" id="profile_picture" name="photo" accept="image/*"-->
+<!--                                       class="form-control">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        {% else %}-->
 
-                          <img src="https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg" class="img-circle profile-avatar"
+                        <img src="https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg"
+                             class="img-circle profile-avatar"
                              alt="img">
-                        <h3>Username: {{current_user.user}}</h3>
+                        <div class="form-group" style="margin-top: 20px; margin-left:20px;">
+                            <label class="col-sm-2 control-label" for="profile_pictur"></label>
+                            <div class="col-sm-7">
+                                <input type="file" type="file" id="profile_pictur" name="photo" accept="image/*"
+                                       class="form-control">
+                            </div>
+                        </div>
+<!--                        {% endif %}-->
+                        <h4>Username: {{current_user.user}}</h4>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -103,8 +121,26 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Ism</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{user.first_name}}" name="first_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Familiya</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{user.last_name}}" name="last_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{user.email}}" name="email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">Manzili</label>
-                           <div class="col-sm-10">
+                            <div class="col-sm-10">
                                 <input type="text" value="{{current_user.addres}}" name="addres" class="form-control">
                             </div>
                         </div>
@@ -136,29 +172,32 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Instagram</label>
                             <div class="col-sm-10">
-                                <input type="text" value="{{current_user.instagram}}" name="instagram" class="form-control">
+                                <input type="text" value="{{current_user.instagram}}" name="instagram"
+                                       class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Facebook</label>
                             <div class="col-sm-10">
-                                <input type="text" value="{{current_user.facebook}}" name="facebook" class="form-control">
+                                <input type="text" value="{{current_user.facebook}}" name="facebook"
+                                       class="form-control">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <a type="reset"  href="{%url 'profile' %}" class="btn btn-default">Cancel</a>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <button type="submit" class="btn btn-primary">Tasdiqlash</button>
+                            <a type="reset" href="{%url 'profile' %}" class="btn btn-default">Orqaga</a>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
+        </form>
     </div>
+</div>
 </div>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

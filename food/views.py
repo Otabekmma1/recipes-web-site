@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Category, Recipes, UserProfile
-from .forms import LoginForm, RegistrationForm, UpdateProfileForm
+from .models import Category, Recipes, UserProfile, Comments
+from .forms import LoginForm, RegistrationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -24,13 +24,30 @@ def all_recipes(request):
 
 
 #id orqali retsept malumotlarini olish
-def recipe_detail(request, id):
-    recipe = Recipes.objects.get(id=id)
+def recipe_detail(request, recipe_id):
+    recipe = Recipes.objects.get(id=recipe_id)
+    comments = Comments.objects.filter(recipe=recipe)
+    #comments
+    if request.method == 'POST':
+        author = request.POST.get('author')
+        text = request.POST.get('text')
+        if all([author, text]):
+            Comments.objects.create(
+                author=author,
+                text=text,
+                recipe=recipe
+            )
+        messages.success(request, f"Izoh muvaffaqiyatli qo'shildi!")
 
     recipe.views += 1
     recipe.save()
+    ctx = {
+        'recipe': recipe,
+        'comments': comments,
+    }
 
-    return render(request, 'food/detail.html', { 'recipe': recipe})
+    return render(request, 'food/detail.html', ctx)
+
 
 
 
@@ -143,8 +160,10 @@ def user_register(request):
 def user_profile(request):
     username = request.user.username
     user = User.objects.get(username=username)
+    recipes = Recipes.objects.filter(author=user)
     ctx = {
         'user': user,
+        'recipes': recipes
     }
 
     try:
@@ -174,6 +193,9 @@ def update_profile(request):
     req = request.POST
     id = request.user.id
     if request.method == "POST":
+        first_name = req.get('first_name')
+        last_name = req.get('last_name')
+        email = req.get('email')
         status = req.get('status')
         addres = req.get('addres')
         phone = req.get('phone')
@@ -183,6 +205,11 @@ def update_profile(request):
         photo = req.get('photo')
 
         edit = UserProfile.objects.get(id=id)
+        req_edit = User.objects.get(username=request.user.username)
+        req_edit.first_name = first_name
+        req_edit.last_name = last_name
+        req_edit.email = email
+        req_edit.save()
         edit.status = status
         edit.addres = addres
         edit.phone = phone
@@ -190,14 +217,18 @@ def update_profile(request):
         edit.instagram = instagram
         edit.facebook = facebook
         edit.photo = photo
+
         edit.save()
         messages.warning(request, "Sahifa muvaffaqiyatli o'zgartirildi")
         return redirect("/profile")
 
     id = request.user.id
+    username = request.user.username
     current_user = UserProfile.objects.get(id=id)
+    user = User.objects.get(username=username)
+
     context = {
         'current_user': current_user,
+        'user': user,
     }
     return render(request, "user/update_profile.html", context)
-

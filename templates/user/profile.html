@@ -35,6 +35,7 @@
           <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Bosh sahifa</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{user}}</li>
+              <li><a type="button" style="margin-left: 910px;" href="{% url 'update_profile' %}" class="btn btn-outline-primary">Profilni tahrirlash</a></li>
           </ol>
         </nav>
                {% for message in messages %}
@@ -49,7 +50,6 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <a href="{% url 'update_profile' %}" ><i style="margin-left:350px;" class="fas fa-pencil"></i></a>
             {% if user.photo %}
             <img src="{{ user.photo.url }}" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
@@ -122,6 +122,35 @@
             </div>
           </div>
         </div>
+
+                  <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nomi</th>
+                    <th scope="col">Retsept</th>
+                    <th scope="col">Kategoriya</th>
+                    <th scope="col">Rasm</th>
+                    <th scope="col">Tahrirlash</th>
+                    <th scope="col">O'chirish</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for d in recipes %}
+                <tr>
+                    <th scope="row">{{d.id}}</th>
+                    <td>{{d.name}}</td>
+                    <td>{{d.content|truncatewords:3}}</td>
+                    <td>{{d.category}}</td>
+                    <td>{{d.photo}}</td>
+                    <td><a type="button" href="/update/{{d.id}}" class="btn btn-outline-primary"><i class="fas fa-pencil"></i></a></td>
+                    <td><a type="button" href="/delete/{{d.id}}" class="btn btn-outline-danger"><i class="fas fa-trash-can"></i></a></td>
+
+                </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
       </div>
     </div>
   </div>

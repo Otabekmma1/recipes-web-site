@@ -6,7 +6,7 @@ from .views import (all_recipes, add_Recept, updateRecept, deleteRecept,
 
 urlpatterns = [
     path('', all_recipes, name='index'),
-    path('detail/<id>/', recipe_detail, name='detail'),
+    path('detail/<recipe_id>/', recipe_detail, name='detail'),
     path('category/<category_id>/', by_category, name='category'),
     # ----------------crud--------------------------
     path('insert/', add_Recept, name="create"),

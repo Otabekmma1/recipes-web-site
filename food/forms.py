@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, Comments
 from django.forms import ModelForm
 
 
@@ -27,13 +27,28 @@ class RegistrationForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'username', 'email')
 
 
-class UpdateProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = "__all__"
-
-    # def __init__(self, *args, **kwargs):
-    #     super(ModelForm, self).__init__(*args, **kwargs)
-    #
-    #     for key, field in self.fields.items():
-    #         field.widget.attrs.update({"class": "input input--text"})
+# class UpdateProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = UserProfile
+#         fields = ('first_name', 'last_name', 'email', 'username')
+#
+#     # def __init__(self, *args, **kwargs):
+#     #     super(ModelForm, self).__init__(*args, **kwargs)
+#     #
+#     #     for key, field in self.fields.items():
+#     #         field.widget.attrs.update({"class": "input input--text"})
+#
+# class CommentForm(forms.ModelForm):
+#
+#
+#     author = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+#         'class': 'form-control'
+#     }))
+#
+#     text = forms.CharField(widget=forms.TextInput(attrs={
+#         'class': 'form-control'
+#     }))
+#
+#     class Meta:
+#         model = Comments
+#         fields = ('author', 'text')

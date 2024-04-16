@@ -21,7 +21,11 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
             rel="stylesheet"
     />
-
+    <script>
+        if (window.history.replaceSate) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 
     <title>
         {% block title %}
@@ -35,7 +39,7 @@
 }
     </style>
 </head>
-<body>
+<body style="background-color: #e8e8e8;">
 
 
 {% include 'components/_header.html' %}
@@ -60,6 +64,5 @@
         type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
 ></script>
-
 </body>
 </html>
