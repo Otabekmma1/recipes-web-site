@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (all_recipes, add_Recept, updateRecept, deleteRecept,
                     recipe_detail, by_category, user_login, user_logout,
-                    user_register, user_profile, update_profile)
+                    user_register, user_profile, update_profile, delete_profile)
 
 
 urlpatterns = [
@@ -19,4 +19,5 @@ urlpatterns = [
     #----------------user profile -------------------
     path('profile/', user_profile, name='profile'),
     path('update_profile/', update_profile, name='update_profile'),
+    path('delete_profile/', delete_profile, name='delete_profile')
 ]

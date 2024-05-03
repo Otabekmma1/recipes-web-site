@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-
+{% load food_extras %}
 {% block title %}
 {{ block.super }}: {{ title }}
 {% endblock title %}
 
 
 {% block main %}
+{% all_categories as categories %}
 <div id="retsept">
     <!-- Tabs navs -->
     <h1 class="text-center mb-5 mt-5">- Retseptlar -</h1>
@@ -23,6 +24,7 @@
             >Barchasi</a
             >
         </li>
+
         {% for category in categories %}
         <li class="nav-item" role="presentation">
             <a

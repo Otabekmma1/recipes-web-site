@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load food_extras %}
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -16,6 +17,7 @@
     <title>Retsept qo'shish</title>
 </head>
 <body>
+{% all_categories as categories %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-md text-center">
         <a class="navbar-brand" href="{% url 'index' %}">Bosh sahifaga qaytish</a>
@@ -56,8 +58,7 @@
                         <option value="{{ i.name }}">{{ i.name }}</option>
                         {% endfor %}
                     </select>
-                </div>
-                <div class="form-group mt-1">
+                </div>                <div class="form-group mt-1">
                     <label for="formFileMultiple" class="form-label">Rasmni kiriting</label>
                     <input class="form-control" type="file" id="formFileMultiple" name="photo" multiple/>
                 </div>

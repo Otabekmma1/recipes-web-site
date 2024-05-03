@@ -35,7 +35,8 @@
           <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Bosh sahifa</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{user}}</li>
-              <li><a type="button" style="margin-left: 910px;" href="{% url 'update_profile' %}" class="btn btn-outline-primary">Profilni tahrirlash</a></li>
+              <li><a type="button" style="margin-left: 730px; margin-right: 20px;" href="{% url 'update_profile' %}" class="btn btn-outline-primary"><i class="fas fa-pen"></i> Profilni tahrirlash</a></li>
+              <li><a type="button" class="btn btn-outline-primary" href="{% url 'delete_profile' %}"><i class="fas fa-trash-can"></i> Profilni o'chirish</a></li>
           </ol>
         </nav>
                {% for message in messages %}

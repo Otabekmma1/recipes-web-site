@@ -6,9 +6,9 @@
      data-minus-value-mobile="55" data-speed="100">
   <!-- Container wrapper -->
   <div class="container-fluid">
-    <img src="{% static 'img/logo/recipe.png' %}" alt="image"
+    <a href="/"><img src="{% static 'img/logo/recipe.png' %}" alt="image"
          height="70"
-          loading="lazy">
+            loading="lazy"></a>
 <!--     Toggle button -->
     <button
       data-mdb-collapse-init
@@ -44,8 +44,9 @@
 
     </div>
     {% if request.user.is_authenticated %}
+        {% if perms.food.add_recipes %}
         <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" style="margin-right: 10px;" href="{% url 'create' %}" role="button">Retsept qo'shish</a>
-
+        {% endif %}
        <!-- Avatar -->
       <div class="dropdown">
         <a

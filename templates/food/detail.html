@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block main  %}
-<div class="d-flex justify-content-between">
+<div  id='retsept' class="d-flex justify-content-between">
     <div class="card mb-3 mt-5 col-8">
         <div class="card-title text-center mt-5 mb-5">
             <div>
@@ -58,15 +58,11 @@
         </div>
     </section>
 </div>
+{% if request.user.is_authenticated %}
 <div>
     <form method="post" style="margin-right: 450px;">
         {% csrf_token %}
         <h4>Izohlar({{comments.all.count}})</h4>
-        <div data-mdb-input-init class="form-outline w-100">
-                <textarea class="form-control" id="textAreaExample" rows="1"
-                          style="background: #fff;" name="author"></textarea>
-            <label class="form-label" for="textAreaExample">Muallif</label>
-        </div>
         <div data-mdb-input-init class="form-outline w-100 mt-3">
                 <textarea class="form-control" id="textAreaExampl" name="text" rows="4"
                           style="background: #fff;"></textarea>
@@ -77,4 +73,5 @@
         </div>
     </form>
 </div>
+{% endif %}
 {% endblock main %}
